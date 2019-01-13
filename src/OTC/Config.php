@@ -21,12 +21,13 @@ final class Config
         'AccessKeySecret' => '',
         'SignatureVersion' => 1,
         'SignatureMethod' => 'HmacSHA256',
-        'NotifyKeySecret' => '',
+        'NotifyKeySecret' => '',//回调通知秘钥
         //'IsHttps' => false,
         'Env' => self::EVN_TEST, //0测试 1生产
         'LogLevel' => self::LOG_LEVEL_ALL, //0 关闭 1全部 2错误
         'LogPath' => './record/',
-        'BuyCallbackUrl' => '',
+        'BuyCallbackUrl' => '',//下单成功同步回调地址
+        'RedirectUrl' => '',//交易完成时要跳转到商户的地址
     ];
 
     // 构造函数
@@ -103,6 +104,11 @@ final class Config
     public function getBuyCallbackUrl()
     {
         return $this->data['BuyCallbackUrl'];
+    }
+
+    public function getRedirectUrl()
+    {
+        return $this->data['RedirectUrl'];
     }
 
     public function getLogPath()

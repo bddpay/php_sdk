@@ -25,6 +25,7 @@ class Order extends GatewayBase
      * @param string $name
      * @param string $idNumber
      * @param string $mobile
+     * @param string $redirect
      * @return string
      * @throws \Exception|InvalidArgumentException
      */
@@ -40,7 +41,8 @@ class Order extends GatewayBase
         $callback = '',
         $name = '',
         $idNumber = '',
-        $mobile = ''
+        $mobile = '',
+        $redirect = ''
     ){
         $paramBuilder = new ParamBuilder($this, __FUNCTION__, func_get_args(), ['name', 'idNumber', 'mobile'], ['outOrderSn' => 'outOrderNo']);
         if (!trim($callback)){
@@ -49,6 +51,10 @@ class Order extends GatewayBase
             }
 
             $paramBuilder->setParam('callback', $this->conf->getBuyCallbackUrl());
+        }
+
+        if (!trim($redirect)){
+            $paramBuilder->setParam('redirect', $this->conf->getRedirectUrl());
         }
 
         $url = $this->genUrl($paramBuilder);
@@ -74,12 +80,16 @@ class Order extends GatewayBase
     /**
      * 网关出金订单详情
      * @param $outOrderSn
+     * @param $redirect
      * @return string
      * @throws \Exception|InvalidArgumentException
      */
-    public function genReceiveUrl($outOrderSn)
+    public function genReceiveUrl($outOrderSn, $redirect = '')
     {
         $paramBuilder = new ParamBuilder($this, __FUNCTION__, func_get_args());
+        if (!trim($redirect)){
+            $paramBuilder->setParam('redirect', $this->conf->getRedirectUrl());
+        }
 
         $url = $this->genUrl($paramBuilder);
 
