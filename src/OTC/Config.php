@@ -5,9 +5,9 @@ final class Config
 {
     const SDK_VER = '1.0.0';
     const TEST_HOST = 'http://merchant.rmmlm.com';
-    const PRODUCTION_HOST = 'https://merchant.bddpay.com';
+    const PRODUCTION_HOST = 'https://www.bddpay.com';
     const GATEWAY_TEST_HOST = 'http://gateway.rmmlm.com';
-    const GATEWAY_PRODUCTION_HOST = 'http://gateway.rmmlm.com';
+    const GATEWAY_PRODUCTION_HOST = 'https://www.bddgateway.com';
     const LOG_LEVEL_CLOSE = 0;
     const LOG_LEVEL_ALL = 1;
     const LOG_LEVEL_ERROR = 2;
